@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SG Mun CHIZZ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{color:#fff;background:#0a0a0a}
+
+/* LOADER */
+#loader{
+ position:fixed;width:100%;height:100%;
+ background:#000;display:flex;justify-content:center;align-items:center;
+ z-index:9999
+}
+.loaderLogo{
+ font-family:'Playfair Display',serif;
+ font-size:32px;color:gold;
+ animation:logoAnim 2s infinite alternate
+}
+@keyframes logoAnim{
+ from{opacity:0.4;transform:scale(0.9)}
+ to{opacity:1;transform:scale(1.1)}
+}
+.hideLoader{opacity:0;visibility:hidden;transition:1s}
+
+/* BACKGROUND */
+#home{background:linear-gradient(135deg,#0a0a0a,#1a1a2e,#2b0033)}
+#shop{background:linear-gradient(135deg,#1a0000,#330000,#660000)}
+#contact{background:#111}
+
+section{padding:100px 20px;text-align:center}
+
+/* NAV */
+nav{
+ position:fixed;width:100%;padding:15px;
+ display:flex;justify-content:space-between;
+ background:#000c;z-index:1000
+}
+.logo{color:gold}
+
+/* MENU */
+.menu{display:flex}
+.menu a{
+ margin-left:20px;color:#ddd;text-decoration:none;
+ padding:6px 12px;border-radius:20px;transition:0.3s
+}
+.menu a:hover{color:gold;box-shadow:0 0 10px gold}
+
+/* HAMBURGER */
+.hamburger{display:none;color:gold;font-size:24px;cursor:pointer}
+
+/* MOBILE MENU */
+.mobileMenu{
+ position:fixed;top:0;right:-100%;
+ width:70%;height:100%;
+ background:#111;
+ transition:0.4s;padding-top:60px
+}
+.mobileMenu a{
+ display:block;padding:15px;color:#fff;text-decoration:none
+}
+.mobileMenu.active{right:0}
+
+/* CLOSE BTN */
+.closeMenu{
+ position:absolute;
+ top:10px;right:15px;
+ font-size:22px;color:red;
+ cursor:pointer;
+}
+
+/* SHOP */
+.shop{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+
+/* PRODUCT */
+.product{
+ background:#111;padding:15px;border-radius:10px;
+ transition:0.3s
+}
+.product:hover{transform:translateY(-5px);box-shadow:0 0 15px rgba(255,255,255,0.3)}
+.product img{width:100%;border-radius:10px}
+
+/* BUTTON */
+button{padding:10px;border:none;border-radius:8px;cursor:pointer}
+.addBtn{background:gold;color:black}
+
+/* CART */
+#cartBox{
+ position:fixed;right:-350px;top:0;width:300px;height:100%;
+ background:#111;padding:20px;overflow:auto;
+ transition:0.4s;z-index:2000
+}
+#cartBox.active{right:0}
+
+/* FLOAT CART */
+.cartToggle{
+ position:fixed;bottom:20px;right:20px;
+ background:gold;color:black;padding:12px;border-radius:50%;
+ box-shadow:0 0 10px gold;
+}
+
+/* AD CARD */
+.adCard{
+ max-width:320px;
+ margin:40px auto;
+ background:rgba(255,255,255,0.05);
+ backdrop-filter:blur(12px);
+ padding:20px;
+ border-radius:15px;
+ box-shadow:0 0 25px rgba(255,215,0,0.2);
+}
+.adCard button{
+ width:100%;
+ margin-top:10px;
+ background:red;
+ color:white;
+}
+
+/* FOOTER */
+footer{
+ background:#000;padding:10px;text-align:center;font-size:12px
+}
+
+/* MOBILE */
+@media(max-width:768px){
+ .menu{display:none}
+ .hamburger{display:block}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+<div class="loaderLogo">SG Brands</div>
+</div>
+
+<!-- NAV -->
+<nav>
+<div class="logo">SG Brands</div>
+
+<div class="menu">
+<a href="#home">🏠 Home</a>
+<a href="#shop">🛍 Shop</a>
+<a href="#contact">📞 Contact</a>
+</div>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobileMenu" id="mobileMenu">
+<div class="closeMenu" onclick="toggleMenu()">✖</div>
+<a href="#home">Home</a>
+<a href="#shop">Shop</a>
+<a href="#contact">Contact</a>
+</div>
+
+<!-- HOME -->
+<section id="home">
+<h1>SG Mun CHIZZ</h1>
+<p>Luxury Streetwear</p>
+</section>
+
+<!-- SHOP -->
+<section id="shop">
+<h2>🔥 Shop</h2>
+
+<div class="shop">
+
+<!-- 👕 SLIDER -->
+<div class="product">
+<img id="slideImg" src="tshirt.jpg">
+<h3 id="slideTitle">Round Neck</h3>
+<p id="slidePrice">N$120</p>
+
+<button onclick="prev()">⬅</button>
+<button onclick="next()">➡</button>
+<br><br>
+<button class="addBtn" onclick="addSlide()">Add</button>
+</div>
+
+<!-- CAP -->
+<div class="product">
+<img src="cap.jpg">
+<h3>Cap</h3>
+<p>N$130</p>
+<button class="addBtn" onclick="add('Cap',130)">Add</button>
+</div>
+
+<!-- SOCKS -->
+<div class="product">
+<img src="socks.jpg">
+<h3>Socks</h3>
+<p>N$60</p>
+<button class="addBtn" onclick="add('Socks',60)">Add</button>
+</div>
+
+</div>
+
+<!-- 📢 ADVERTISE -->
+<div class="adCard">
+<h2>📢 Advertise With Us</h2>
+<p>Promote your brand with SG Mun CHIZZ.<br>Custom clothing & collaborations available.</p>
+<button onclick="toggleCart()">Order Now</button>
+</div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>📞 Contact</h2>
+<p>Email: smallgiantinvcc1@gmail</p>
+<p>WhatsApp: 085 8151809</p>
+</section>
+
+<!-- CART -->
+<div id="cartBox">
+<button onclick="toggleCart()">Close</button>
+
+<h3>Cart</h3>
+<div id="cart"></div>
+
+<p>Items: N$<span id="itemsTotal">0</span></p>
+<p>Delivery: N$<span id="delivery">0</span></p>
+<p><b>Total: N$<span id="total">0</span></b></p>
+
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<input id="location" placeholder="Location" oninput="calcDelivery()">
+
+<button onclick="checkout()">Order via WhatsApp</button>
+</div>
+
+<div class="cartToggle" onclick="toggleCart()">🛒</div>
+
+<footer>
+<p>© 2026 SG Mun CHIZZ</p>
+</footer>
+
+<script>
+window.onload=()=>{
+ setTimeout(()=>{
+  document.getElementById("loader").classList.add("hideLoader");
+ },1200);
+};
+
+let cart=[],itemsTotal=0,delivery=0;
+
+/* ADD */
+function add(name,price){
+ cart.push({name,price});
+ itemsTotal+=price;
+ render();
+}
+
+/* RENDER */
+function render(){
+ let list=document.getElementById("cart");
+ list.innerHTML="";
+ cart.forEach(i=>{
+  list.innerHTML+=`${i.name} N$${i.price}<br>`;
+ });
+ document.getElementById("itemsTotal").textContent=itemsTotal;
+ calcDelivery();
+}
+
+/* DELIVERY */
+function calcDelivery(){
+ let loc=document.getElementById("location").value.toLowerCase();
+
+ if(loc.includes("windhoek")){
+  delivery=30;
+ }else if(loc.trim()!=""){
+  delivery=60;
+ }else{
+  delivery=0;
+ }
+
+ document.getElementById("delivery").textContent=delivery;
+ document.getElementById("total").textContent=itemsTotal+delivery;
+}
+
+/* CART */
+function toggleCart(){
+ document.getElementById("cartBox").classList.toggle("active");
+}
+
+function toggleMenu(){
+ document.getElementById("mobileMenu").classList.toggle("active");
+}
+
+/* WHATSAPP */
+function checkout(){
+ let name=document.getElementById("name").value;
+ let phone=document.getElementById("phone").value;
+ let location=document.getElementById("location").value;
+
+ if(!name || !phone || !location){alert("Fill all fields");return;}
+ if(cart.length===0){alert("Cart empty");return;}
+
+ let items="";
+ cart.forEach(i=>{items+=`- ${i.name} N$${i.price}%0A`;});
+
+ let total=itemsTotal+delivery;
+
+ let msg=`SG Mun CHIZZ Order%0A
+Name: ${name}%0A
+Phone: ${phone}%0A
+Location: ${location}%0A
+--------------------%0A
+Items:%0A${items}
+--------------------%0A
+Items Total: N$${itemsTotal}%0A
+Delivery: N$${delivery}%0A
+TOTAL: N$${total}%0A
+Confirm Order ✔`;
+
+ window.open(`https://wa.me/264858151809?text=${msg}`,"_blank");
+}
+
+/* SLIDER */
+let slides=[
+ {name:"Round Neck",price:120,img:"tshirt.jpg"},
+ {name:"V-Neck",price:130,img:"tshirt.jpg"}
+];
+
+let i=0;
+
+function show(){
+ document.getElementById("slideImg").src=slides[i].img;
+ document.getElementById("slideTitle").innerText=slides[i].name;
+ document.getElementById("slidePrice").innerText="N$"+slides[i].price;
+}
+function next(){i=(i+1)%slides.length;show();}
+function prev(){i=(i-1+slides.length)%slides.length;show();}
+function addSlide(){add(slides[i].name,slides[i].price);}
+</script>
+
+</body>
+</html>
